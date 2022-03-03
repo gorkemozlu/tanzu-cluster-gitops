@@ -1,23 +1,21 @@
-apiVersion: run.tanzu.vmware.com/v1alpha2
-kind: TanzuKubernetesCluster
+apiVersion: run.tanzu.vmware.com/v1alpha1      #TKGS API endpoint
+kind: TanzuKubernetesCluster                   #required parameter
 metadata:
-  name: tap-cluster-01
-  namespace: myles-ns-01
+  name: tkgs-cluster-4                         #cluster name, user defined
+  namespace: tanzuns1                   #vsphere namespace
 spec:
   distribution:
-    version: v1.21
-  settings:
-    storage:
-      classes:
-      - vsan-default-storage-policy
-      defaultClass: vsan-default-storage-policy
+    version: v1.20                             #Resolves to latest TKR 1.20
   topology:
     controlPlane:
-      replicas: 3
-      storageClass: vsan-default-storage-policy
-      vmClass: best-effort-large
-    nodePools:
-    - name: workers
-      replicas: 4
-      storageClass: vsan-default-storage-policy
-      vmClass: best-effort-large
+      count: 1                                 #number of control plane nodes
+      class: best-effort-medium               #vmclass for control plane nodes
+      storageClass: tanzu         #storageclass for control plane
+    workers:
+      count: 1                                 #number of worker nodes
+      class: best-effort-medium                #vmclass for worker nodes
+      storageClass: tanzu        #storageclass for worker nodes
+  settings:
+    storage:
+      classes: ["tanzu"]
+      defaultClass: tanzu
