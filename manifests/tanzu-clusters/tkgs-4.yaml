@@ -15,6 +15,11 @@ spec:
       count: 1                                 #number of worker nodes
       class: best-effort-medium                #vmclass for worker nodes
       storageClass: tanzu        #storageclass for worker nodes
+      volumes:
+        - name: containerd
+          mountPath: /var/lib/containerd
+          capacity:
+            storage: 66Gi
   settings:
     storage:
       classes: ["tanzu"]
