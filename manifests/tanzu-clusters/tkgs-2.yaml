@@ -1,7 +1,7 @@
 apiVersion: run.tanzu.vmware.com/v1alpha1      #TKGS API endpoint
 kind: TanzuKubernetesCluster                   #required parameter
 metadata:
-  name: tkgs-cluster-2                         #cluster name, user defined
+  name: tkgs-cluster-3                         #cluster name, user defined
   namespace: tanzuns1                   #vsphere namespace
 spec:
   distribution:
